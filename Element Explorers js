@@ -1,0 +1,8 @@
+// Element Explorers — interactive script
+// Expects: #grid (container) and #detail (detail panel)
+const elements = [
+  {sym:'H',name:'Hydrogen',z:1,fact:'Lightest element; fuel for stars.'},
+  {sym:'He',name:'Helium',z:2,fact:'Second-most abundant in universe.'},
+  {sym:'Li',name:'Lithium',z:3,fact:'Used in rechargeable batteries.'},
+  {sym:'Be',name:'Beryllium',z:4,fact:'Aerospace alloys.'},
+  {sym:'B',name:'Boron',z:5,fact:'Found in borax and detergents.'},
