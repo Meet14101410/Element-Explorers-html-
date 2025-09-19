@@ -1,0 +1,23 @@
+:root{
+  --bg:#f3f7fb;
+  --card:#ffffff;
+  --muted:#667;
+  --accent:#1e90ff;
+  --border:rgba(30,60,120,.06);
+  --glass:rgba(255,255,255,.6);
+  --radius:10px;
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+}
+
+/* Page layout */
+html,body{height:100%;margin:0;background:var(--bg)}
+.app{max-width:760px;margin:28px auto;padding:18px;border-radius:var(--radius);background:var(--card);box-shadow:0 8px 28px rgba(20,30,50,.08)}
+
+h1{font-size:20px;margin:0 0 14px;color:#102030}
+
+/* Element grid */
+.grid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+.card{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px;border-radius:8px;border:1px solid var(--border);cursor:pointer;background:linear-gradient(180deg,var(--glass),transparent);transition:transform .16s ease,box-shadow .16s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 10px 24px rgba(20,30,50,.08)}
+.card strong{font-size:16px;line-height:1}
+.card small{font-size:12px
