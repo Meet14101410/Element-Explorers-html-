@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Element Explorers</title>
+  <style>
+    :root{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0}
+    body{display:flex;min-height:100vh;align-items:center;justify-content:center;background:#f3f7fb}
+    .app{width:720px;padding:18px;border-radius:12px;background:white;box-shadow:0 6px 20px rgba(20,30,50,.08)}
+    h1{margin:0 0 12px;font-size:20px}
+    .grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+    .card{padding:8px;border-radius:6px;text-align:center;cursor:pointer;border:1px solid #e6eef8}
+    .card small{display:block;color:#556}
+    #detail{margin-top:12px;padding:10px;border-radius:8px;background:#fbfdff;border:1px solid #e1f0ff}
+    .hint{font-size:13px;color:#667}
+  </style>
+</head>
+<body>
+  <main class="app">
+    <h1>Element Explorers — click an element</h1>
+    <div class="grid" id="grid"></div>
+    <div id="detail"><em class="hint">Select an element to see details.</em></div>
+  </main>
+
+  <script>
+    // Short element dataset (first 20 elements)
+    const elements = [
+      {sym:'H',name:'Hydrogen',z:1,fact:'Lightest element; fuel for stars.'},
+      {sym:'He',name:'Helium',z:2,fact:'Second-most abundant in universe.'},
+      {sym:'Li',name:'Lithium',z:3,fact:'Used in rechargeable batteries.'},
+      {sym:'Be',name:'Beryllium',z:4,fact:'Aerospace alloys.'},
+      {sym:'B',name:'Boron',z:5,fact:'Found in borax and detergents.'},
+      {sym:'C',name:'Carbon',z:6,fact:'Basis of organic life.'},
+      {sym:'N',name:'Nitrogen',z:7,fact:'Major part of air.'},
+      {sym:'O',name:'Oxygen',z:8,fact:'Supports respiration.'},
+      {sym:'F',name:'Fluorine',z:9,fact:'Most reactive element.'},
+      {sym:'Ne',name:'Neon',z:10,fact:'Glows in neon signs.'},
+      {sym:'Na',name:'Sodium',z:11,fact:'Common in salt.'},
+      {sym:'Mg',name:'Magnesium',z:12,fact:'Light structural metal.'},
+      {sym:'Al',name:'Aluminium',z:13,fact:'Widely used, corrosion-resistant.'},
+      {sym:'Si',name:'Silicon',z:14,fact:'Semiconductors & sand.'},
+      {sym:'P',name:'Phosphorus',z:15,fact:'Essential for DNA.'},
+      {sym:'S',name:'Sulfur',z:16,fact:'Used in fertilizers.'},
+      {sym:'Cl',name:'Chlorine',z:17,fact:'Disinfectant.'},
+      {sym:'Ar',name:'Argon',z:18,fact:'Inert gas for lighting.'},
+      {sym:'K',name:'Potassium',z:19,fact:'Important for cells.'},
+      {sym:'Ca',name:'Calcium',z:20,fact:'Builds bones.'}
+    ];
+
+    const grid = document.getElementById('grid');
+    const detail = document.getElementById('detail');
+
+    elements.forEach(el=>{
+      const d = document.createElement('button');
+      d.className = 'card';
+      d.innerHTML = `<strong>${el.sym}</strong><small>${el.z}</small>`;
+      d.addEventListener('click', ()=> showDetail(el));
+      grid.appendChild(d);
+    });
+
+    function showDetail(el){
+      detail.innerHTML = `
+        <strong>${el.name} (${el.sym}) — Z=${el.z}</strong>
+        <p style="margin:8px 0 0">${el.fact}</p>
+        <p style="margin:8px 0 0" class="hint">Try memorizing symbols — quiz will load on refresh.</p>
+      `;
+      // small animation
+      detail.animate([{opacity:0},{opacity:1}],{duration:220});
+    }
+
+    // simple quiz on load (optional): press Q to start
+    window.addEventListener('keydown', e=>{
+      if(e.key.toLowerCase()==='q') startQuiz();
+    });
+
+    function startQuiz(){
+      const idx = Math.floor(Math.random()*elements.length);
+      const el = elements[idx];
+      const ans = prompt(`What's the symbol for ${el.name}?`);
+      if(ans===null) return;
+      alert(ans.trim().toLowerCase()===el.sym.toLowerCase() ? 'Correct! 🎉' : `Wrong — answer: ${el.sym}`);
+    }
+  </script>
+</body>
+</html>
